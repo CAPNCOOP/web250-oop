@@ -2,19 +2,49 @@
 
 class Camera
 {
-  public $name;
-  public $brand;
-  public $type;
+  private $name;
+  private $brand;
+  private $type;
+
+  public function setName($name)
+  {
+    $this->name = $name;
+  }
+
+  public function setBrand($brand)
+  {
+    $this->brand = $brand;
+  }
+
+  public function setType($type)
+  {
+    $this->type = $type;
+  }
+
+  public function getName()
+  {
+    return $this->name;
+  }
+
+  public function getBrand()
+  {
+    return $this->brand;
+  }
+
+  public function getType()
+  {
+    return $this->type;
+  }
 
   public function describe()
   {
-    return "This is a {$this->brand}, {$this->name}, {$this->type} camera.";
+    return "This is a {$this->getBrand()}, {$this->getName()}, {$this->getType()} camera.";
   }
 }
 
 class Dslr extends Camera
 {
-  public $hasMirror;
+  private $hasMirror = true;
 
   public function describe()
   {
@@ -24,7 +54,7 @@ class Dslr extends Camera
 
 class Mirrorless extends Camera
 {
-  public $noMirror;
+  private $hasMirror = false;
   public function describe()
   {
     return parent::describe() . " It captures pictures digitally on the sensor without the use of a mirror.";
@@ -32,15 +62,14 @@ class Mirrorless extends Camera
 }
 
 $canon = new Dslr();
-$canon->name = '1DXIII';
-$canon->brand = 'Canon';
-$canon->type = 'DSLR';
-
+$canon->setName('1DXIII');
+$canon->setBrand('Canon');
+$canon->setType('DSLR');
 
 $sony = new Mirrorless();
-$sony->name = 'A7IV';
-$sony->brand = 'Sony';
-$sony->type = 'Mirrorless';
+$sony->setName('A7IV');
+$sony->setBrand('Sony');
+$sony->setType('Mirrorless');
 
 echo $canon->describe() . '<br>';
 echo $sony->describe() . '<br>';
